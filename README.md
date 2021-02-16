@@ -2,13 +2,17 @@
 
 Corvette is a static site generator that creates a directory listing similar to an autoindex.
 
-Corvette is created by [Philip Kiely](https://philipkiely.com) and open source under the MIT License. Corvette is sponsored by [PK&C](https://pkandc.com).
+EXAMPLE IMAGE HERE
+
+To see Corvette in action on a live site, check out [https://philipkiely.com/assets/](https://philipkiely.com/assets/).
 
 ## Installation
 
+Corvette is written in Python and installable with pip.
 
 ## Usage
 
+Always run Corvette in your build script after your assets folder is generated for distribution to ensure complete, correct paths.
 
 ## Development
 
@@ -50,3 +54,6 @@ The tests run off of a set of sample assets, listed below. All contents of all f
 
 To run the tests, implement tests.
 
+## About
+
+Corvette is created by [Philip Kiely](https://philipkiely.com) and open source under the MIT License. Corvette is sponsored by [PK&C](https://pkandc.com).
