@@ -1,7 +1,0 @@
-README.md
-setup.py
-corvette/__init__.py
-corvette.egg-info/PKG-INFO
-corvette.egg-info/SOURCES.txt
-corvette.egg-info/dependency_links.txt
-corvette.egg-info/top_level.txt
