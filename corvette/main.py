@@ -26,7 +26,7 @@ def insert_index(env, target, breadcrumbs, lines):
     # Make index.html from template + data (Jinja)
     # Insert into correct directory
     html = env.get_template("page.html").render({
-        "breadcrumbs": lambda x, y: [x, y] for x, y in breadcrumbs.items(),
+        "breadcrumbs": [[x, y] for x, y in breadcrumbs.items()],
         "lines": lines
     })
     f = open(target+"/index.html", "w")
@@ -39,7 +39,7 @@ def autoindex(base_dir):
     # Initialize jinja
     env = Environment(
         loader=FileSystemLoader(
-            [base_dir + "/theme/templates"]),
+            ["theme/templates"]),
         autoescape=select_autoescape(["html", "xml"]),
         auto_reload=True
     )
