@@ -50,6 +50,8 @@ def build_line(name, is_folder):
     return l
 
 def autoindex(base_dir):
+    # Don't index the index file
+    os.system("rm {}/index.html {}/**/index.html".format(base_dir, base_dir))
     # Initialize jinja
     env = Environment(
         loader=FileSystemLoader(
@@ -65,10 +67,10 @@ def autoindex(base_dir):
         for f in files:
             lines.append(build_line(f, False))
         # Build breadcrumbs
-        path = cur.split("/")
+        path = [p for p in cur.split("/") if p not in base_dir.split("/")]
         breadcrumbs = {}
         for i in range(len(path)):
-            breadcrumbs[path[i]] = "/".join(path[:i])
+            breadcrumbs[path[i]] = "/".join(path[:i+1])
         # Define where we are going to put the output
         target = cur
         # Generate and insert the directory listing page

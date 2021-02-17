@@ -4,15 +4,18 @@
 
 <h3>Breadcrumbs</h3>
 
+<p>
+<a href="/">Autoindex</a> /
 {% for b in breadcrumbs %}
-<p>{{ b[0] }} | {{ b[1] }}</p>
+<a href="/{{ b[1] }}">{{ b[0] }}</a> / 
 {% endfor %}
+</p>
 
 <h3>Files</h3>
 
 {% for l in lines %}
 {% if not l.hide %}
-<p>{{ l.icon }} | {{ l.text }} | {{ l.link }}</p>
+<p><i class="bi-{{ l.icon }}"></i> <a href="{{ l.link }}">{{ l.text }}</a></p>
 {% endif %}
 {% endfor %}
 {% endblock %}
