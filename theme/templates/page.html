@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for b in breadcrumbs %}
+<p>{{ b[0] }} | {{ b[1] }}</p>
+{% endfor %}
+
+{% for l in lines %}
+<p>{{ l.icon }} | {{ l.text }} | {{ l.link }}</p>
+{% endfor %}
+
+{% endblock %}

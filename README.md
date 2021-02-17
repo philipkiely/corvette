@@ -34,6 +34,8 @@ Use a JSON file to bring your own icons (name: \[extensions\])
 
 Use a virtual environment with requirements.txt (only dependency is Jinja and its dependencies)
 
+Helpful command: `rm */index.html` to get rid of generated indexes.
+
 ### Setting Up
 
 
