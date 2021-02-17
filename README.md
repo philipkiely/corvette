@@ -6,6 +6,16 @@ EXAMPLE IMAGE HERE
 
 To see Corvette in action on a live site, check out [https://philipkiely.com/assets/](https://philipkiely.com/assets/).
 
+
+NOTE
+
+Implementation detail/design decisions: clickable breadcrumbs but NO back/.. listed in the directory, a little more friendly for non-terminal users
+
+```html
+Index of <a href="/">https://philipkiely.com</a>/<a href="/assets">assets</a>/<a href="/assets/img">img</a>
+```
+
+
 ## Installation
 
 Corvette is written in Python and installable with pip.
@@ -14,9 +24,15 @@ Corvette is written in Python and installable with pip.
 
 Always run Corvette in your build script after your assets folder is generated for distribution to ensure complete, correct paths.
 
+## Themes
+
+Assumes you have your own base.html
+
+Use a JSON file to bring your own icons (name: \[extensions\])
+
 ## Development
 
-Use a virtual environment with requirements.txt
+Use a virtual environment with requirements.txt (only dependency is Jinja and its dependencies)
 
 ### Setting Up
 

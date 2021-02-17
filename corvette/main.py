@@ -1,59 +1,43 @@
 import os
 import sys
 
-class Page:
+def get_icon(ext):
+    icons = {
+        "file-earmark-code": ["html", "css", "scss", "js", "ts", "py", "ipynb", "php", "rb", "haml", "c", "r"], # Woefully incomplete
+        "file-earmark-image": ["jpg", "png", "tiff", "psd", "raw", "heic", "svg"],
+        "file-earmark-music": ["mp3", "wav", "ogg", "m4a"],
+        "file-earmark-play": ["mp4", "m4v", "mkv", "mov", "qt", "mpg", "gif", "gifv"],
+        "file-earmark-ppt": ["pptx", "ppt"],
+        "file-earmark-richtext": ["pdf"],
+        "file-earmark-spreadsheet": ["csv", "xlsx", "xlsm", "xlsb", "xltx", "xls"],
+        "file-earmark-text": ["txt", "md", "rtf", "tex", "xml", "yml"],
+        "file-earmark-word": ["docx", "doc", "pages"],
+        "file-earmark-zip": ["zip", "tar", "gz", "7z"]
+    }
+    for icon, extensions in icons.items():
+        if ext in extensions:
+            return icon
+    else:
+        return "file-earmark" # Default for unrecognized files
 
-    def __init__(self, parent, name, subdirs, files):
-        self.parent = parent # None if root, else Page
-        self.children = [] # Stays empty if leaf
-        self.files = files
-        self.name = name # The file or folder name, including extension
-        if parent:
-            self.path = parent.path + name + "/"
-        else:
-            self.path = name + "/"
-        # self.modified = "" # The timestamp this was changed at
-        # self.size = "" # In KB/MB/etc preferably
-        self.add_children(subdirs)
-    
-    def __repr__(self):
-        return "Page()"
-    
-    def __str__(self):
-        return self.path
-    
-    # Populate children array from input
-    def add_children(self, subdirs):
+def autoindex(base_dir):
+    for cur, subdirs, files in os.walk(base_dir):
+        lines = []
         for s in subdirs:
-            if s[0] != ".": # Ignore hidden
-                cur, s_subdirs, s_files = next(os.walk(self.path + s))
-                self.children.append(Page(self, s, s_subdirs, s_files))
+            l = {}
+            l["icon"] = "folder-fill"
+            l["text"] = cur.split("/")[-1]
+            l["link"] = base_dir + s[1:]
+            lines.append(l)
+        for f in files:
+            l = {}
+            l["icon"] = get_icon(f.split(".")[-1])
+            l["text"] = cur.split("/")[-1]
+            l["link"] = base_dir + s[1:]
+            lines.append(l)
+        breadcrumbs = cur[1:].split("/")
 
-    def is_root(self):
-        if self.parent:
-            return False
-        return True
-
-    def is_leaf(self):
-        if self.children == []:
-            return True
-        return False
-    
-    # Based on file type or folder, return appropriate icon
-    def get_icon(self):
-        folders = ["/"]  # These should be class variables
-        # and so on, probably combine these in one object
-        images = [".png", ".jpg"]
-        # if extension in whatever
-            # return icons[whatever]
-        # return default
-        return None
-
-
-def traverse(base_dir):
-    cur, subdirs, files = next(os.walk(base_dir))
-    return Page(None, base_dir, subdirs, files)
 
 
 if __name__=="__main__":
-    print(traverse(sys.argv[1]))
+    print(autoindex(sys.argv[1]))
