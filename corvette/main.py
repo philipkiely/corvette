@@ -35,6 +35,20 @@ def insert_index(env, target, breadcrumbs, lines):
     return
 
 
+def build_line(name, is_folder):
+    l = {}
+    if is_folder:
+        l["icon"] = "folder-fill"
+    else:
+        l["icon"] = get_icon(name.split(".")[-1])
+    if name[0] == ".":
+        l["hide"] = True
+    else:
+        l["hide"] = False
+    l["text"] = name
+    l["link"] = name
+    return l
+
 def autoindex(base_dir):
     # Initialize jinja
     env = Environment(
@@ -47,27 +61,19 @@ def autoindex(base_dir):
     for cur, subdirs, files in os.walk(base_dir):
         lines = []
         for s in subdirs:
-            l = {}
-            l["icon"] = "folder-fill"
-            l["text"] = cur.split("/")[-1]
-            l["link"] = base_dir + s[1:]
-            lines.append(l)
+            lines.append(build_line(s, True))
         for f in files:
-            l = {}
-            l["icon"] = get_icon(f.split(".")[-1])
-            l["text"] = cur.split("/")[-1]
-            l["link"] = base_dir + s[1:]
-            lines.append(l)
+            lines.append(build_line(f, False))
         # Build breadcrumbs
-        path = cur[1:].split("/")
+        path = cur.split("/")
         breadcrumbs = {}
         for i in range(len(path)):
-            breadcrumbs[path[i]] = base_dir + "/".join(path[:i])
+            breadcrumbs[path[i]] = "/".join(path[:i])
         # Define where we are going to put the output
-        target = base_dir+cur[1:]
+        target = cur
         # Generate and insert the directory listing page
         insert_index(env, target, breadcrumbs, lines)
     return
 
 if __name__=="__main__":
-    print(autoindex(sys.argv[1]))
+    autoindex(sys.argv[1])

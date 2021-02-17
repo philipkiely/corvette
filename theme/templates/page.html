@@ -2,12 +2,17 @@
 
 {% block content %}
 
+<h3>Breadcrumbs</h3>
+
 {% for b in breadcrumbs %}
 <p>{{ b[0] }} | {{ b[1] }}</p>
 {% endfor %}
 
-{% for l in lines %}
-<p>{{ l.icon }} | {{ l.text }} | {{ l.link }}</p>
-{% endfor %}
+<h3>Files</h3>
 
+{% for l in lines %}
+{% if not l.hide %}
+<p>{{ l.icon }} | {{ l.text }} | {{ l.link }}</p>
+{% endif %}
+{% endfor %}
 {% endblock %}
