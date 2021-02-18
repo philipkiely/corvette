@@ -78,4 +78,5 @@ def autoindex(base_dir):
     return
 
 if __name__=="__main__":
+    # I probably want a site name parameter...and maybe a corvette_config file?
     autoindex(sys.argv[1])

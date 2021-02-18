@@ -2,7 +2,7 @@
 
 Corvette is a static site generator that creates a directory listing similar to an autoindex.
 
-EXAMPLE IMAGE HERE
+EXAMPLE IMAGE HERE (before and after)
 
 To see Corvette in action on a live site, check out [https://philipkiely.com/assets/](https://philipkiely.com/assets/).
 
@@ -18,17 +18,47 @@ Index of <a href="/">https://philipkiely.com</a>/<a href="/assets">assets</a>/<a
 
 ## Installation
 
-Corvette is written in Python and installable with pip.
+Corvette is written in Python and is installable with pip. It is strongly recommended that you use Corvette (and any other Python packages) in a virtual environment. To install, run:
+
+```
+pip install corvette
+```
+
+Alternately, you can clone this repository and build the package locally.
+
+## Configuration
+
+Create and edit a corvetteconf.py 
+
+Stuff worth configuring:
+
+* Output Directories (array)
+* Theme
+* icons.json
 
 ## Usage
 
-Always run Corvette in your build script after your assets folder is generated for distribution to ensure complete, correct paths.
+<temp>
+
+There are three directories that matter
+
+* The folder corvette's code is installed in
+* The folder corvette's code is run in
+* The folder the output is generated in
+
+</temp>
+
+**Note:** Always run Corvette in your build script after your assets folder is generated for distribution to ensure complete, correct paths.
 
 ## Themes
 
 Assumes you have your own base.html
 
 Use a JSON file to bring your own icons (name: \[extensions\])
+
+page.html is theme "Bootstrap Basic"
+
+Maybe it should be named corvette.html to make it easier to use existing themes!
 
 ## Development
 

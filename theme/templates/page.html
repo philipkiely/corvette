@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container-md">
 
-<h3>Breadcrumbs</h3>
+    <h1>Corvette &mdash; Autoindex Directory Listing
 
-<p>
-<a href="/">Autoindex</a> /
-{% for b in breadcrumbs %}
-<a href="/{{ b[1] }}">{{ b[0] }}</a> / 
-{% endfor %}
-</p>
+    <h3>Breadcrumbs</h3>
 
-<h3>Files</h3>
+    <ul class="list-inline fs-3">
+        <a href="/">Autoindex</a>
+        <li class="list-inline-item">/</li>
+        {% for b in breadcrumbs %}
+            <li class="list-inline-item"><a href="/{{ b[1] }}">{{ b[0] }}</a></li>
+            <li class="list-inline-item">/</li>
+        {% endfor %}
+    </ul>
 
-{% for l in lines %}
-{% if not l.hide %}
-<p><i class="bi-{{ l.icon }}"></i> <a href="{{ l.link }}">{{ l.text }}</a></p>
-{% endif %}
-{% endfor %}
+    {% for l in lines %}
+        {% if not l.hide %}
+            <p class="fs-5 text-dark"><i class="bi-{{ l.icon }}"></i> <a class="text-reset" href="{{ l.link }}">{{ l.text }}</a></p>
+        {% endif %}
+    {% endfor %}
+</div>
 {% endblock %}
