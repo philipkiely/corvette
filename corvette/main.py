@@ -25,7 +25,7 @@ def get_icon(ext):
 def insert_index(env, target, breadcrumbs, lines):
     # Make index.html from template + data (Jinja)
     # Insert into correct directory
-    html = env.get_template("page.html").render({
+    html = env.get_template("corvette.html").render({
         "breadcrumbs": [[x, y] for x, y in breadcrumbs.items()],
         "lines": lines
     })
@@ -35,12 +35,14 @@ def insert_index(env, target, breadcrumbs, lines):
     return
 
 
-def build_line(name, is_folder):
+def build_line(name, is_file):
     l = {}
-    if is_folder:
+    if not is_file:
         l["icon"] = "folder-fill"
+        l["file"] = False
     else:
         l["icon"] = get_icon(name.split(".")[-1])
+        l["file"] = True
     if name[0] == ".":
         l["hide"] = True
     else:
@@ -63,9 +65,9 @@ def autoindex(base_dir):
     for cur, subdirs, files in os.walk(base_dir):
         lines = []
         for s in subdirs:
-            lines.append(build_line(s, True))
+            lines.append(build_line(s, False))
         for f in files:
-            lines.append(build_line(f, False))
+            lines.append(build_line(f, True))
         # Build breadcrumbs
         path = [p for p in cur.split("/") if p not in base_dir.split("/")]
         breadcrumbs = {}

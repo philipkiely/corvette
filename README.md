@@ -32,27 +32,38 @@ Create and edit a corvetteconf.py
 
 Stuff worth configuring:
 
-* Output Directories (array)
-* Theme
-* icons.json
+```
+# Display Information
+ROOT_NAME = Assets
+ROOT_LINK = https://example.com/assets
+
+# Build Information
+OUTPUT_DIR = 
+ICONS = 
+TEMPLATE = 
+```
 
 ## Usage
 
-<temp>
+**Important:**
 
-There are three directories that matter
-
-* The folder corvette's code is installed in
-* The folder corvette's code is run in
-* The folder the output is generated in
-
-</temp>
-
-**Note:** Always run Corvette in your build script after your assets folder is generated for distribution to ensure complete, correct paths.
+1. Always run Corvette in your build script after your assets folder is generated for distribution to ensure complete, correct paths.
+2. Corvette assumes it is run in the project's root directory. Configure paths appropriately.
 
 ## Themes
 
+Out of the box, Corvette uses the default theme Bootstrap Basic to build pages. The source code for that theme is distributed along within the library and can be viewed in this repository at `/theme/templates`. It is written to be easy to read and adapt into your own theme and uses 100% of the available data passed by Jinja's `render()` method.
+
+Corvette is designed to integrate with your existing (Python-based) static site generator, but can stand alone. As such, it is easier to add a single file, named `corvette.html` to avoid file name conflicts, to your existing Jinja-based template than to maintain a separate theme, but the latter is possible.
+
+### Adding Corvette to an Existing Theme
+
+
+
 Assumes you have your own base.html
+
+
+### Creating a New Theme for Corvette
 
 Use a JSON file to bring your own icons (name: \[extensions\])
 
