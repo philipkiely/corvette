@@ -28,19 +28,19 @@ Alternately, you can clone this repository and build the package locally.
 
 ## Configuration
 
-Create and edit a corvetteconf.py 
+Create and edit a `corvetteconf.py`
 
 Stuff worth configuring:
 
 ```
 # Display Information
-ROOT_NAME = Assets
-ROOT_LINK = https://example.com/assets
+ROOT_NAME = "Assets" # Root Breadcrumb Text
+ROOT_LINK = "/" # Root Breadcrumb Absolute URL
 
 # Build Information
-OUTPUT_DIR = 
-ICONS = 
-TEMPLATE = 
+OUTPUT_DIR = "test/sample_assets" # Where the indexes will be created
+TEMPLATE_DIR = "theme/templates" # Where the template lives
+CUSTOM_ICONS = False # Maybe I just leave the icons here...
 ```
 
 ## Usage
@@ -52,36 +52,44 @@ TEMPLATE =
 
 ## Themes
 
-Out of the box, Corvette uses the default theme Bootstrap Basic to build pages. The source code for that theme is distributed along within the library and can be viewed in this repository at `/theme/templates`. It is written to be easy to read and adapt into your own theme and uses 100% of the available data passed by Jinja's `render()` method.
+Out of the box, Corvette uses the default theme "Bootstrap Basic" to build pages. The source code for that theme is distributed along within the library and can be viewed in this repository at `/theme/templates`. It is written to be easy to read and adapt into your own theme and uses 100% of the available data passed by Jinja's `render()` method.
 
-Corvette is designed to integrate with your existing (Python-based) static site generator, but can stand alone. As such, it is easier to add a single file, named `corvette.html` to avoid file name conflicts, to your existing Jinja-based template than to maintain a separate theme, but the latter is possible.
+Corvette is designed to integrate with your existing (Python-based) static site generator, but can stand alone. As such, it is easier to add a single file, named `corvette.html` by convention, to your existing Jinja-based template than to maintain a separate theme, but the latter is possible.
 
 ### Adding Corvette to an Existing Theme
 
+If you already have a project in Pelican, MkDocs, Lektor, or any other static site generator that uses Jinja for templates, you only have to create a single file to use Corvette. Assuming you already have a `base.html` or similar, create `corvette.html` to extend that file and use this repository's example to write your own.
+
+### Creating a New Jinja Theme for Corvette
 
 
-Assumes you have your own base.html
 
+### Set Your Own Icons
 
-### Creating a New Theme for Corvette
+If you're not using Bootstrap 5, you'll need to define your own icons (assuming you want icons in your theme). In `corvetteconf.py`, create a Python dictionary with the following format:
 
-Use a JSON file to bring your own icons (name: \[extensions\])
+```
+{
+    "icon_classname_a": ["png", "jpg"],
+    "icon_classname_a": ["pdf"]
+}
+```
 
-page.html is theme "Bootstrap Basic"
-
-Maybe it should be named corvette.html to make it easier to use existing themes!
+You can do the same if you want to override the default icon configuration 
 
 ## Development
 
-Use a virtual environment with requirements.txt (only dependency is Jinja and its dependencies)
+Use a virtual environment with requirements.txt (only dependency is Jinja and its dependencies): `pip install -r requirements.txt`.
 
-Helpful command: `rm */index.html` to get rid of generated indexes.
+Helpful command: `rm tests/**/index.html` to get rid of generated indexes.
 
-### Setting Up
+### Contributing
 
+If you have code changes, please make a pull request and I will review them!
 
 ### Distribution
 
+Finished versions of Corvette are released on PyPi. 
 
 ### Tests
 
