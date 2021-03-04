@@ -6,15 +6,7 @@ EXAMPLE IMAGE HERE (before and after)
 
 To see Corvette in action on a live site, check out [https://philipkiely.com/assets/](https://philipkiely.com/assets/).
 
-
-NOTE
-
-Implementation detail/design decisions: clickable breadcrumbs but NO back/.. listed in the directory, a little more friendly for non-terminal users
-
-```html
-Index of <a href="/">https://philipkiely.com</a>/<a href="/assets">assets</a>/<a href="/assets/img">img</a>
-```
-
+I wrote Corvette to use on my own websites. Packaging and distributing it as open source is an experiment in factoring something out of the (plate of spaghetti/big ball of mud) that is my build script. However, that means that there may be some weird behaviors or configuration steps if you're not using a similar overall setup.
 
 ## Installation
 
@@ -28,9 +20,11 @@ Alternately, you can clone this repository and build the package locally.
 
 ## Configuration
 
-Create and edit a `corvetteconf.py`
+Create and edit a `corvetteconf.json`
 
 Stuff worth configuring:
+
+TODO: Fix
 
 ```
 # Display Information
@@ -40,15 +34,27 @@ ROOT_LINK = "/" # Root Breadcrumb Absolute URL
 # Build Information
 OUTPUT_DIR = "test/sample_assets" # Where the indexes will be created
 TEMPLATE_DIR = "theme/templates" # Where the template lives
-CUSTOM_ICONS = False # Maybe I just leave the icons here...
+# ICONS = {} # If you want to override existing icon names
 ```
 
+See the tests directory (link) or philipkiely.com (link) for examples.
+
 ## Usage
+
+In your build script, include the line:
+
+```
+python -m corvette corvetteconf.json
+```
+
+The conf file is technically optional but you probably need it for any real-world use.
 
 **Important:**
 
 1. Always run Corvette in your build script after your assets folder is generated for distribution to ensure complete, correct paths.
-2. Corvette assumes it is run in the project's root directory. Configure paths appropriately.
+2. Corvette assumes the underlying script is run in the project's root directory. Configure paths appropriately.
+3. Corvette runs in place, as in it should be pointed directly at your `dist/` folder or equivalent.
+4. Corvette does not come with its own live reload behavior, as it is intended to be used with your existing static site generator and development environment.
 
 ## Themes
 
@@ -62,7 +68,9 @@ If you already have a project in Pelican, MkDocs, Lektor, or any other static si
 
 ### Creating a New Jinja Theme for Corvette
 
+If you want to create a new Jinja theme for Corvette (example use case: you're running just a file server) then create an appropriate template named `corvette.html` (no need for a `base.html` if the template is not designed to integrate with another template) and point `TEMPLATE_DIR` to it in `corvetteconf.py`.
 
+If you're using Corvette with a project not written in Python, strongly consider porting the generator to your language for a simpler build process.
 
 ### Set Your Own Icons
 
@@ -75,7 +83,7 @@ If you're not using Bootstrap 5, you'll need to define your own icons (assuming 
 }
 ```
 
-You can do the same if you want to override the default icon configuration 
+You can do the same if you want to override the default icon configuration.
 
 ## Development
 
@@ -89,22 +97,18 @@ If you have code changes, please make a pull request and I will review them!
 
 ### Distribution
 
-Finished versions of Corvette are released on PyPi. 
+Finished versions of Corvette are released on PyPi.
+
+To get ready for distribution:
+
+1. Increment the version number in `setup.py`
+2. Run `python setup.py sdist`
+3. Run `python -m twine upload dist/*` 
 
 ### Tests
 
 The tests run off of a set of sample assets, listed below. All contents of all files are open source, public domain, or royalty-free to use.
 
-
-* Hamlet (Folger Shakespeare).pdf
-* Kayak_Lake_Unsplash.png
-* Mountain_Cabin_Unsplash.jpg
-* Neffex - Fight Back (Clip).mp3
-* Neffex - Fight Back (Clip).mp4
-* Romeo & Juliet (Folger Shakespeare).docx
-* Romeo & Juliet (Folger Shakespeare).epub
-* Titanic_Data.csv
-* Titanic_Data.xlsx
 * **bootstrap-5.0.0-beta2-dist/**
   * **css/**
     * bootstrap-grid.css
@@ -114,12 +118,26 @@ The tests run off of a set of sample assets, listed below. All contents of all f
     * bootstrap.bundle.js
     * bootstrap.esm.js
     * *...(10 more)*
-* bootstrap-5.0.0-beta2-dist.zip
 * **empty/**
+* Hamlet (Folger Shakespeare).pdf
+* Kayak_Lake_Unsplash.png
+* Mountain_Cabin_Unsplash.jpg
+* Neffex - Fight Back (Clip).mp3
+* Neffex - Fight Back (Clip).mp4
+* Romeo & Juliet (Folger Shakespeare).docx
+* Romeo & Juliet (Folger Shakespeare).epub
+* Titanic_Data.csv
+* Titanic_Data.xlsx
+* bootstrap-5.0.0-beta2-dist.zip
 * sonnet_vi.md
 * sonnet_xxii.txt
+* fizzbuzz.py
 
 To run the tests, implement tests.
+
+* A folder of correct files
+* If files match, test passes
+* If not, tests fail, print diff
 
 ## About
 

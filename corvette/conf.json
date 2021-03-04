@@ -1,0 +1,23 @@
+{
+    "root_name": "Index",
+    "root_link": "/",
+    "build_dir": "tests/sample_assets",
+    "template_dir": "False",
+    "file_icons": {
+        "file-earmark-spreadsheet": ["ods", "xls", "xlsx", "xlsm", "xlsb", "xltx", "csv", "ics", "vcf", "sqlite"],
+        "file-earmark-image": ["3dm", "3ds", "max", "bmp", "dds", "gif", "jpg", "jpeg", "png", "psd", "xcf", "tga", "thm", "tif", "tiff", "yuv", "ai", "eps", "ps", "svg", "dwg", "dxf", "gpx", "kml", "kmz", "webp", "raw", "heic"],
+        "file-earmark-play": ["3g2", "3gp", "aaf", "asf", "avchd", "avi", "drc", "flv", "m2v", "m4p", "m4v", "mkv", "mng", "mov", "mp2", "mp4", "mpe", "mpeg", "mpg", "mpv", "mxf", "nsv", "ogg", "ogv", "ogm", "qt", "rm", "rmvb", "roq", "srt", "svi", "vob", "webm", "wmv", "yuv"],
+        "file-earmark-music": ["aac", "aiff", "ape", "au", "flac", "gsm", "it", "m3u", "m4a", "mid", "mod", "mp3", "mpa", "pls", "ra", "s3m", "sid", "wav", "wma", "xm"],
+        "file-earmark-zip": ["7z", "a", "apk", "ar", "bz2", "cab", "cpio", "deb", "dmg", "egg", "gz", "iso", "jar", "lha", "mar", "pea", "rar", "rpm", "s7z", "shar", "tar", "tbz2", "tgz", "tlz", "war", "whl", "xpi", "zip", "zipx", "xz", "pak"],
+        "file-earmark-binary": ["exe", "msi", "bin", "command", "sh", "bat", "crx"],
+        "file-earmark-code": ["c", "cc", "class", "clj", "cpp", "cs", "cxx", "el", "go", "h", "haml", "ipynb", "java", "lua", "m", "m4", "php", "pl", "po", "py", "rb", "r", "rs", "sh", "swift", "vb", "vcxproj", "xcodeproj", "xml", "diff", "patch", "html", "htm", "css", "js", "jsx", "less", "scss", "wasm", "php", "ts"],
+        "file-earmark-font": ["eot", "otf", "ttf", "woff", "woff2"],
+        "file-earmark-richtext": ["pdf"],
+        "file-earmark-ppt": ["ppt", "odp", "pptx"],
+        "file-earmark-word": ["docx", "doc", "pages"],
+        "file-earmark-text": ["log", "md", "msg", "odt", "org", "rtf", "rst", "tex", "txt", "wpd", "wps", "xml", "yml"],
+        "file-earmark-post": ["mobi", "epub", "azw1", "azw3", "azw4", "azw6", "azw", "cbr", "cbz", "ebook"]
+    },
+    "folder_icon": "folder-fill",
+    "default_icon": "file-earmark"
+}
