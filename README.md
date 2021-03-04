@@ -133,11 +133,14 @@ The tests run off of a set of sample assets, listed below. All contents of all f
 * sonnet_xxii.txt
 * fizzbuzz.py
 
-To run the tests, implement tests.
+To run the tests, implement tests. Some stuff to write:
 
 * A folder of correct files
 * If files match, test passes
 * If not, tests fail, print diff
+* Test custom theme
+
+At the moment, you just want to run `python -m corvette tests/corvetteconf.json` and visually confirm the output.
 
 ## About
 

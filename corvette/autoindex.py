@@ -1,5 +1,4 @@
 import os
-import sys
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 def get_icon(conf, ext):

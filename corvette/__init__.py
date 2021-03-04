@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 from corvette.autoindex import autoindex
 
@@ -22,6 +23,6 @@ def main():
     for key in conf.keys():
         if key in user_conf:
             conf[key] = user_conf[key]
-    if not conf["template_dir"]:
+    if conf["template_dir"] == "False":
         conf["template_dir"] = os.path.join(dirname, "theme/templates")
     autoindex(conf)

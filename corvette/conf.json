@@ -1,7 +1,7 @@
 {
     "root_name": "Index",
     "root_link": "/",
-    "build_dir": "tests/sample_assets",
+    "build_dir": ".",
     "template_dir": "False",
     "file_icons": {
         "file-earmark-spreadsheet": ["ods", "xls", "xlsx", "xlsm", "xlsb", "xltx", "csv", "ics", "vcf", "sqlite"],

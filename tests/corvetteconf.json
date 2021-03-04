@@ -1,0 +1,5 @@
+{
+    "root_name": "Sample Assets",
+    "root_link": "/",
+    "build_dir": "tests/sample_assets"
+}
