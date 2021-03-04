@@ -1,0 +1,3 @@
+include corvette/conf.json
+include corvette/theme/templates/base.html
+include corvette/theme/templates/corvette.html
